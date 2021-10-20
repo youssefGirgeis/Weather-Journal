@@ -27,15 +27,6 @@ const server = app.listen(port, () =>
   console.log(`Running on a localhost: ${port}`)
 );
 
-// app.get("/", (req, res) => {
-//   res.send(projectData);
-// });
-
-// app.post("/addMovie", (req, res) => {
-//   console.log(req.body);
-//   data.push(req.body);
-// });
-
 app.post("/addData", (req, res) => {
   projectData["temperature"] = req.body.temperature;
   projectData["date"] = req.body.date;
