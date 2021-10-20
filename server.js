@@ -36,8 +36,10 @@ const server = app.listen(port, () =>
 //   data.push(req.body);
 // });
 
-// app.post("/addTemp", (req, res) => {
-//   projectData["temperature"] = req.body.temperature;
-//   projectData["date"] = req.body.temperature;
-//   projectData["userResponse"] = req.body.userResponse;
-// });
+app.post("/addData", (req, res) => {
+  projectData["temperature"] = req.body.temperature;
+  projectData["date"] = req.body.date;
+  projectData["userResponse"] = req.body.feelings;
+  res.send(projectData);
+  console.log(projectData);
+});
