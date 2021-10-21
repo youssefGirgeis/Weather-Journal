@@ -51,6 +51,16 @@ const postData = async function (url = "", data = {}) {
   }
 };
 
+const getData = async function (url = "") {
+  const request = await fetch(url);
+  try {
+    const data = await request.json();
+    console.log(data.temperature);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const updateUI = async function (data) {
   temperatureHTML.innerHTML = data.temperature;
   dateHTML.innerHTML = data.date;
