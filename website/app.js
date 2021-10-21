@@ -7,9 +7,7 @@ const dateHTML = document.getElementById("date");
 const contentHTML = document.getElementById("content");
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
-
-generateButton.addEventListener("click", generateData);
+let newDate = d.getMonth() + 1 + "." + d.getDate() + "." + d.getFullYear();
 
 const generateData = function () {
   const zipCode = document.getElementById("zip").value;
@@ -73,3 +71,5 @@ const getData = async function (url = "") {
     console.log(error);
   }
 };
+
+generateButton.addEventListener("click", generateData);
