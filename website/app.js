@@ -9,7 +9,9 @@ const contentHTML = document.getElementById("content");
 let d = new Date();
 let newDate = d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
 
-generateButton.addEventListener("click", function () {
+generateButton.addEventListener("click", generateData);
+
+const generateData = function () {
   const zipCode = document.getElementById("zip").value;
   const feelings = document.getElementById("feelings").value;
 
@@ -20,7 +22,7 @@ generateButton.addEventListener("click", function () {
       feelings: feelings,
     }).then((data) => updateUI(data));
   });
-});
+};
 
 const getCurrentTemperature = async function (
   baseURL,
@@ -56,6 +58,12 @@ const postData = async function (url = "", data = {}) {
   }
 };
 
+const updateUI = async function (data) {
+  temperatureHTML.innerHTML = `Temperature: ${data.temperature} C`;
+  dateHTML.innerHTML = `Date: ${data.date}`;
+  contentHTML.innerHTML = `Feeling: ${data.userResponse}`;
+};
+
 const getData = async function (url = "") {
   const request = await fetch(url);
   try {
@@ -64,10 +72,4 @@ const getData = async function (url = "") {
   } catch (error) {
     console.log(error);
   }
-};
-
-const updateUI = async function (data) {
-  temperatureHTML.innerHTML = data.temperature;
-  dateHTML.innerHTML = data.date;
-  contentHTML.innerHTML = data.userResponse;
 };
