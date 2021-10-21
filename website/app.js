@@ -1,5 +1,5 @@
 /* Global Variables */
-const url = "http://api.openweathermap.org/data/2.5/weather?zip=&&appid=";
+const baseURL = "http://api.openweathermap.org/data/2.5/weather?";
 const API_KEY = "ff9ed2b3aa83f2ca46f9febbe9781413";
 const generateButton = document.getElementById("generate");
 const temperatureHTML = document.getElementById("temp");
@@ -13,7 +13,7 @@ generateButton.addEventListener("click", function () {
   const zipCode = document.getElementById("zip").value;
   const feelings = document.getElementById("feelings").value;
 
-  getCurrentTemperature(zipCode, API_KEY).then((temperature) => {
+  getCurrentTemperature(baseURL, zipCode, API_KEY).then((temperature) => {
     postData("/addData", {
       temperature: temperature,
       date: newDate,
@@ -22,9 +22,14 @@ generateButton.addEventListener("click", function () {
   });
 });
 
-const getCurrentTemperature = async function (zipCode, key, countryCode = "") {
+const getCurrentTemperature = async function (
+  baseURL,
+  zipCode,
+  key,
+  countryCode = ""
+) {
   const response = await fetch(
-    `http://api.openweathermap.org/data/2.5/weather?zip=${zipCode},${countryCode}&appid=${key}`
+    `${baseURL}zip=${zipCode},${countryCode}&units=metric&appid=${key}`
   );
 
   try {
