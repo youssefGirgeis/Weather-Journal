@@ -25,10 +25,7 @@ const generateData = function () {
       feelings: feelings,
     })
       .then(() => getData("/getData"))
-      .then((data) => {
-        updateUI(data);
-        console.log(data);
-      });
+      .then((data) => updateUI(data));
   });
 };
 
