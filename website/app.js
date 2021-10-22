@@ -10,6 +10,10 @@ const contentHTML = document.getElementById("content");
 let d = new Date();
 let newDate = d.getMonth() + 1 + "." + d.getDate() + "." + d.getFullYear();
 
+/**
+ * @description - this function is invoked when the generate button is clicked.
+ * It invokes all the functions in this code.
+ */
 const generateData = function () {
   const zipCode = document.getElementById("zip").value;
   const feelings = document.getElementById("feelings").value;
@@ -23,6 +27,14 @@ const generateData = function () {
   });
 };
 
+/**
+ * @description - fetches the current temperature from weather API
+ * @param {string} baseURL - API base url
+ * @param {string} zipCode - a valid zip code
+ * @param {string} key - API personal key
+ * @param {string} countryCode - a valid country code
+ * @returns - current temperature
+ */
 const getCurrentTemperature = async function (
   baseURL,
   zipCode,
@@ -41,6 +53,12 @@ const getCurrentTemperature = async function (
   }
 };
 
+/**
+ *
+ * @description - posts an object to the app endpoint
+ * @param {object} data - an object with three properties: temperature, date, feeling
+ * @returns - the posted object
+ */
 const postData = async function (url = "", data = {}) {
   const response = await fetch(url, {
     method: "POST",
@@ -57,12 +75,19 @@ const postData = async function (url = "", data = {}) {
   }
 };
 
+/**
+ * @description - updates the UI using user and API data
+ * @param {object} data - an object with three properties: temperature, date, feeling
+ */
 const updateUI = async function (data) {
   temperatureHTML.innerHTML = `Temperature: ${data.temperature} C`;
   dateHTML.innerHTML = `Date: ${data.date}`;
   contentHTML.innerHTML = `Feeling: ${data.userResponse}`;
 };
 
+/**
+ * @description - fetch the data from the app endpoint
+ */
 const getData = async function (url = "") {
   const request = await fetch(url);
   try {
