@@ -5,6 +5,7 @@ const generateButton = document.getElementById("generate");
 const temperatureHTML = document.getElementById("temp");
 const dateHTML = document.getElementById("date");
 const contentHTML = document.getElementById("content");
+
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth() + 1 + "." + d.getDate() + "." + d.getFullYear();
@@ -66,7 +67,6 @@ const getData = async function (url = "") {
   const request = await fetch(url);
   try {
     const data = await request.json();
-    console.log(data.temperature);
   } catch (error) {
     console.log(error);
   }

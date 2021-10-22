@@ -31,7 +31,6 @@ app.post("/addData", (req, res) => {
   projectData["date"] = req.body.date;
   projectData["userResponse"] = req.body.feelings;
   res.send(projectData);
-  console.log(projectData);
 });
 
 app.get("/getData", (req, res) => res.send(projectData));
