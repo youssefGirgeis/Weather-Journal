@@ -23,7 +23,12 @@ const generateData = function () {
       temperature: temperature,
       date: newDate,
       feelings: feelings,
-    }).then((data) => updateUI(data));
+    })
+      .then(() => getData("/getData"))
+      .then((data) => {
+        updateUI(data);
+        console.log(data);
+      });
   });
 };
 
@@ -92,6 +97,7 @@ const getData = async function (url = "") {
   const request = await fetch(url);
   try {
     const data = await request.json();
+    return data;
   } catch (error) {
     console.log(error);
   }
